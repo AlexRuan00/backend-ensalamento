@@ -12,6 +12,20 @@ const database = require('../models/database');
              res.status(500).send({ erro: erro });
          }
      )
+
+ }
+
+ exports.deleteProfessor = (req, res) => {
+    const query = "DELETE FROM professores WHERE id_professor=$1;"
+    const values = [req.params.id];
+
+    database.query(query, values).then(
+        () => {
+            res.status(200).send({mensagem: "Professor successfully deleted."})
+        },
+        (erro) => {
+            res.status(500).send({erro : erro})
+
  };
  exports.listProfessor = (req,res)=>{
     const query = 'SELECT * FROM professores'
@@ -21,6 +35,7 @@ const database = require('../models/database');
         },
         (error) => {
             res.status(500).send({message: "an error has occurred", error});
+
         }
     )
  }
