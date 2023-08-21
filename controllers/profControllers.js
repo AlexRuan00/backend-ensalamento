@@ -13,3 +13,17 @@ const database = require('../models/database');
          }
      )
  }
+
+ exports.deleteProfessor = (req, res) => {
+    const query = "DELETE FROM professores WHERE id_professor=$1;"
+    const values = [req.params.id];
+
+    database.query(query, values).then(
+        () => {
+            res.status(200).send({mensagem: "Professor successfully deleted."})
+        },
+        (erro) => {
+            res.status(500).send({erro : erro})
+        }
+    )
+ }

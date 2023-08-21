@@ -3,6 +3,7 @@ const router = express.Router();
 const controller = require('../controllers/profControllers');
 
 router
-.post('/', controller.registerProfessor);
+.post('/', controller.registerProfessor)
+.delete('/:id', controller.deleteProfessor)
 
 module.exports = router;
