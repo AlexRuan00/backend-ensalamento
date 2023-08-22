@@ -27,19 +27,21 @@ exports.deleteProfessor = (req, res) => {
             res.status(500).send({ erro: erro })
 
         });
-    exports.listProfessor = (req, res) => {
-        const query = 'SELECT * FROM professores'
-        database.query(query).then(
-            (result) => {
-                res.status(200).send(result.rows);
-            },
-            (error) => {
-                res.status(500).send({ message: "an error has occurred", error });
-
-            }
-        )
-    }
 }
+
+exports.listProfessor = (req, res) => {
+    const query = 'SELECT * FROM professores'
+    database.query(query).then(
+        (result) => {
+            res.status(200).send(result.rows);
+        },
+        (error) => {
+            res.status(500).send({ message: "an error has occurred", error });
+
+        }
+    )
+}
+
 
 exports.updateProfessor = (req, res) => {
     const oldName = req.params.nome;
