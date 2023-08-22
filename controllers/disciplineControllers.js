@@ -14,6 +14,7 @@ exports.registerDisciplines = (req, res) => {
     )
 
 }
+
 exports.listDisciplines = (req, res) => {
     const query = 'SELECT * FROM disciplinas'
     database.query(query).then(
@@ -26,3 +27,17 @@ exports.listDisciplines = (req, res) => {
         }
     )
 };
+
+exports.deleteDisciplines = (req, res) => {
+    const query = "DELETE FROM disciplinas WHERE  id_materia=$1;"
+    const values = [req.params.id];
+
+    database.query(query, values).then(
+        () => {
+            res.status(200).send({ mensagem: "Discipline successfully deleted." })
+        },
+        (erro) => {
+            res.status(500).send({ erro: erro })
+
+        });
+}
