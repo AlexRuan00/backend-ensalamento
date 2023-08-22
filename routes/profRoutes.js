@@ -6,6 +6,6 @@ router
 .post('/', controller.registerProfessor)
 .delete('/:id', controller.deleteProfessor)
 .get('/', controller.listProfessor)
-
+.put('/:nome', controller.updateProfessor);
 
 module.exports = router;
