@@ -14,3 +14,15 @@ exports.registerDisciplines = (req, res) => {
     )
 
 }
+exports.listDisciplines = (req, res) => {
+    const query = 'SELECT * FROM disciplinas'
+    database.query(query).then(
+        (result) => {
+            res.status(200).send(result.rows);
+        },
+        (error) => {
+            res.status(500).send({ message: "an error has occurred", error });
+
+        }
+    )
+};
