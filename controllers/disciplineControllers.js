@@ -41,3 +41,19 @@ exports.deleteDisciplines = (req, res) => {
 
         });
 }
+
+exports.updateDisciplines = (req, res) => {
+    const {id} = req.params;
+    const { nome, fase, cargaHoraria } = req.body;
+    console.log(nome, fase, cargaHoraria, id)
+    const query = 'UPDATE disciplinas SET nome_materia=$1, fase_materia=$2, carga_horaria =$3 WHERE id_materia=$4;';
+    const values = [nome, fase, cargaHoraria, id];
+    database.query(query, values).then(
+        ()=> {
+            res.status(200).send({ mensagem: 'Cerveja atualizada com sucesso!' });
+        },
+        (erro) => {
+            res.status(500).send({ erro: erro });
+        }
+    )
+}

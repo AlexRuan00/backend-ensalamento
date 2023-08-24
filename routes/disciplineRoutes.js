@@ -6,5 +6,6 @@ router
 .post('/', controller.registerDisciplines)
 .get('/',controller.listDisciplines)
 .delete('/:id',controller.deleteDisciplines)
+.put('/:id', controller.updateDisciplines)
 
 module.exports = router;
