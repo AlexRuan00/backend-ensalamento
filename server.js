@@ -10,6 +10,9 @@ app.use('/professor', professorRoutes);
 const disciplineRoutes = require('./routes/disciplineRoutes');
 app.use('/disciplina', disciplineRoutes);
 
+const classroomsRoutes = require('./routes/classroomRoutes');
+app.use('/sala', classroomsRoutes);
+
 app.listen(PORT, () => {
     console.log(`Server iniciado na porta: ${PORT}`);
 });

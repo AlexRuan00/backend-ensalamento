@@ -50,7 +50,7 @@ exports.updateDisciplines = (req, res) => {
     const values = [nome, fase, cargaHoraria, id];
     database.query(query, values).then(
         ()=> {
-            res.status(200).send({ mensagem: 'Cerveja atualizada com sucesso!' });
+            res.status(200).send({ mensagem: 'Discipline successfully updated.' });
         },
         (erro) => {
             res.status(500).send({ erro: erro });
