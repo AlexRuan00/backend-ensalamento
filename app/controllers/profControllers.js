@@ -1,9 +1,10 @@
-const database = require('../models/database');
+const database = require('../../config/database');
 
 exports.registerProfessor = (req, res) => {
-    const { nome } = req.body;
-    const query = 'INSERT INTO professores(nome_professor) VALUES($1);'
-    const values = [nome]
+    const { nome, dias, quantidadeDias } = req.body;
+    console.log(nome, dias, quantidadeDias);
+    const query = 'INSERT INTO professores (nome_professor, dias_disponiveis, quantidade_dias) VALUES($1, $2, $3);'
+    const values = [nome, dias, quantidadeDias]
     database.query(query, values).then(
         () => {
             res.status(201).send({ message: 'Professor successfully registered.' });
@@ -12,7 +13,6 @@ exports.registerProfessor = (req, res) => {
             res.status(500).send({ erro: erro });
         }
     )
-
 }
 
 exports.deleteProfessor = (req, res) => {
@@ -44,10 +44,11 @@ exports.listProfessor = (req, res) => {
 
 
 exports.updateProfessor = (req, res) => {
-    const oldName = req.params.nome;
-    const query = 'UPDATE professores SET nome_professor=$2 WHERE nome_professor=$1';
-    const values = [oldName, req.body.nome];
-
+    const {id} = req.params;
+    const { nome, dias, quantidadeDias } = req.body;
+    console.log(nome, dias, quantidadeDias, id)
+    const query = 'UPDATE professores SET nome_professor=$1, dias_disponiveis=$2, quantidade_dias=$3 WHERE id_professor=$4;';
+    const values = [nome, dias, quantidadeDias, id];
     database.query(query, values).then(
         () => {
             res.status(201).send({

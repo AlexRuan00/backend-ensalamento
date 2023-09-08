@@ -1,4 +1,4 @@
-const database = require('../models/database');
+const database = require('../../config/database');
 
 exports.registerClassroom= (req, res) => {
     const { numero, fase, capacidade } = req.body;
