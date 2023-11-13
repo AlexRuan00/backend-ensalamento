@@ -2,7 +2,7 @@ const database = require('../../config/database');
 
 exports.registerDisciplines = (req, res) => {
     const { nome, idFase } = req.body;
-    const query = 'INSERT INTO disciplinas (nome_materia, id_fase ) VALUES($1, $2);'
+    const query = 'INSERT INTO materias (nome_materia, id_fase ) VALUES($1, $2);'
     const values = [nome, idFase]
     database.query(query, values).then(
         () => {
@@ -16,7 +16,7 @@ exports.registerDisciplines = (req, res) => {
 }
 
 exports.listDisciplines = (req, res) => {
-    const query = 'SELECT * FROM disciplinas'
+    const query = 'SELECT * FROM materias'
     database.query(query).then(
         (result) => {
             res.status(200).send(result.rows);
@@ -29,7 +29,7 @@ exports.listDisciplines = (req, res) => {
 };
 
 exports.deleteDisciplines = (req, res) => {
-    const query = "DELETE FROM disciplinas WHERE  id_materia=$1;"
+    const query = "DELETE FROM materias WHERE  id_materia=$1;"
     const values = [req.params.id];
 
     database.query(query, values).then(
@@ -45,7 +45,7 @@ exports.deleteDisciplines = (req, res) => {
 exports.updateDisciplines = (req, res) => {
     const { id } = req.params;
     const { nome, idFase } = req.body;
-    const query = 'UPDATE disciplinas SET nome_materia=$1, id_fase=$2 WHERE id_materia=$3;';
+    const query = 'UPDATE materias SET nome_materia=$1, id_fase=$2 WHERE id_materia=$3;';
     const values = [nome, idFase, id];
     database.query(query, values).then(
         () => {
