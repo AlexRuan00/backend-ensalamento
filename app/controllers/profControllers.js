@@ -16,6 +16,7 @@ const registerProfDiscipline = (idProf, idsDiscipline) => {
     }
 }
 
+
 exports.registerProfessor = (req, res) => {
     const { nome, dias, quantidadeDias, idMateria } = req.body;
     const query = 'INSERT INTO professores (nome_professor, dias_disponiveis, quantidade_dias) VALUES($1, $2, $3);'
