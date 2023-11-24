@@ -1,36 +1,12 @@
 const database = require('../../config/database');
 
-const registerProfDiscipline = (idProf, idsDiscipline) => {
-    for (let i = 0; i < idsDiscipline.length; i++) {
-        const id = idsDiscipline[i];
-        const query = 'INSERT INTO  professores_materias (id_professor, id_materia) VALUES($1, $2);'
-        const values = [idProf, id];
-        database.query(query, values).then(
-            () => {
-                console.log("professor_materia successfully registered.")
-            },
-            (erro) => {
-                console.log(erro)
-            }
-        )
-    }
-}
-
 
 exports.registerProfessor = (req, res) => {
     const { nome, dias, quantidadeDias, idMateria } = req.body;
-    const query = 'INSERT INTO professores (nome_professor, dias_disponiveis, quantidade_dias) VALUES($1, $2, $3);'
-    const queryLastProf = 'SELECT * FROM professores ORDER BY id_professor DESC LIMIT 1;'
-    const values = [nome, dias, quantidadeDias]
+    const query = 'INSERT INTO professores (nome_professor, dias_disponiveis, quantidade_dias, id_materia) VALUES($1, $2, $3, $4);'
+    const values = [nome, dias, quantidadeDias, idMateria]
     database.query(query, values).then(
         () => {
-            database.query(queryLastProf).then(
-                (result) => {
-                    const idProfessor = result.rows[0].id_professor
-                    registerProfDiscipline(idProfessor, idMateria)
-                }
-            )
-
             res.status(201).send({ message: 'Professor successfully registered.' });
         },
         (erro) => {
