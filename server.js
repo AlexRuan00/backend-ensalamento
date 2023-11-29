@@ -4,7 +4,7 @@ const cors = require('cors');
 const PORT = 3000;
 const app = express();
 
-const allowedOrigins = ['http://localhost:5173', 'http://outro-endereco.com'];
+const allowedOrigins = ['http://localhost:5173', 'https://frontend-ensalamento.vercel.app'];
 
 const corsOptions = {
     origin: function (origin, callback) {
