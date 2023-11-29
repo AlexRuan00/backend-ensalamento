@@ -45,10 +45,10 @@ exports.listProfessor = (req, res) => {
 
 exports.updateProfessor = (req, res) => {
     const { id } = req.params;
-    const { nome, dias, quantidadeDias } = req.body;
-    console.log(nome, dias, quantidadeDias, id)
-    const query = 'UPDATE professores SET nome_professor=$1, dias_disponiveis=$2, quantidade_dias=$3 WHERE id_professor=$4;';
-    const values = [nome, dias, quantidadeDias, id];
+    const { nome, dias, quantidadeDias, idMateria } = req.body;
+    console.log(nome, dias, quantidadeDias, idMateria, id)
+    const query = 'UPDATE professores SET nome_professor=$1, dias_disponiveis=$2, quantidade_dias=$3, id_materia=$4 WHERE id_professor=$5;';
+    const values = [nome, dias, quantidadeDias, idMateria, id];
     database.query(query, values).then(
         () => {
             res.status(201).send({
