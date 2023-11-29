@@ -3,11 +3,19 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = 3000;
 const app = express();
+
+const allowedOrigins = ['http://localhost:5173', 'http://outro-endereco.com'];
+
 const corsOptions = {
-    origin: 'http://localhost:5173'
-    
-  };
-  
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
+};
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
