@@ -20,6 +20,9 @@ app.use('/disciplina', disciplineRoutes);
 const phaseRoutes = require('./app/routes/phaseRoutes');
 app.use('/fase', phaseRoutes);
 
+const ensalarRoutes = require('./app/routes/ensalarRoutes');
+app.use('/ensalar', ensalarRoutes);
+
 app.listen(PORT, () => {
     console.log(`Server iniciado na porta: ${PORT}`);
 });
